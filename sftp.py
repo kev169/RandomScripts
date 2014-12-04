@@ -36,6 +36,22 @@ def main(args):
         sys.exit()
     else:
         print("success")
+    transport = paramiko.Transport((host, port))
+    transport.connect(username = username, password = password)
+    sftp = paramiko.SFTPClient.from_transport(transport)
+    #Download piece
+    filepath = '/etc/passwd'
+    localpath = '/home/remotepasswd'
+    sftp.get(filepath, localpath)
+
+    # Upload
+    filepath = '/home/foo.jpg'
+    localpath = '/home/pony.jpg'
+    sftp.put(localpath, filepath)
+
+    # Close
+    sftp.close()
+    transport.close()
 if __name__ == "__main__":
     if len(sys.argv) < 3:
         print("Not enough arguments");
