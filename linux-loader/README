@@ -1,0 +1,4 @@
+This is just a sample of a loader that can load a pie elf binary buffer and 
+execute it.
+
+Could be useful to download and run a pie binary in memory.
